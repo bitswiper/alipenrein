@@ -5,54 +5,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Air Spirits - Coming Soon</title>
-    <link rel="stylesheet" href="beer.css">
+    <link rel="stylesheet" href="beer_copy.css">
     <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.6.2/dist/dotlottie-wc.js" type="module"></script>
 </head>
 
 <body>
-    <div class="background-overlay"></div>
 
-    <div class="container">
+
+
+    <div class="container video-container">
+        <video class="responsive-video mobile-video" autoplay loop muted playsinline poster="Mobile_video_cover.png">
+            <source src="Alpenrein_Mobile_video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <video class="responsive-video pc-video" autoplay loop muted playsinline poster="PC_video_cover.png">
+            <source src="Alpenrein_PC.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <audio id="background-audio" autoplay loop>
+            <source src="Alpenrein_Music.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        <script>
+            // Ensure background music plays after user interaction if autoplay is blocked
+            document.addEventListener('DOMContentLoaded', function() {
+                var audio = document.getElementById('background-audio');
+                if (audio) {
+                    // Try to play immediately
+                    var playPromise = audio.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(function() {
+                            // If autoplay is blocked, play on first user interaction
+                            var unlockAudio = function() {
+                                audio.play();
+                                document.removeEventListener('click', unlockAudio);
+                                document.removeEventListener('touchstart', unlockAudio);
+                            };
+                            document.addEventListener('click', unlockAudio);
+                            document.addEventListener('touchstart', unlockAudio);
+                        });
+                    }
+                }
+            });
+        </script>
+    </div>
+
+    <div class="coming-soon-section">
         <h1 class="main-title">WE'RE COMING SOON</h1>
         <div class="underline"></div>
-
         <p class="german-subtitle">...zurzeit sprudeln neue Ideen, bitte besuchen Sie<br>uns bald wieder!</p>
         <p class="english-subtitle">...new Ideas are bubbling up, please visit us soon.</p>
+    </div>
 
-    <img src="./bottel fill.gif" alt="Bubbling Beer Animation" style="width: 180px; height: 180px;" />
-
-        <div class="logo-section">
-            <img src="./logo.png" alt="Air Spirits Logo" style="height: 200px;">
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-company">
+            <h2 class="footer-title">ALPENREIN</h2>
+            <p class="footer-tagline">Export of Beer & Spirits</p>
         </div>
-
-        <div class="company-info">
-            <svg class="red-arrow" viewBox="0 0 60 40">
-                <path class="arrow-line" d="M5,20 Q30,5 50,20 L45,15 M50,20 L45,25" />
-            </svg>
-
-            <h2 style="font-size: 2rem; color: #fff; margin-bottom: 0.5rem; font-weight: bold;">AIR SPIRITS</h2>
-            <p class="tagline">Export of Beer & Spirits</p>
-
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span class="contact-icon">📧</span>
-                    <span>air.spirits@gmx.de</span>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-icon">📱</span>
-                    <span>+49 (0) 176 21466 707</span>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-icon">📍</span>
-                    <span>Merianstr. 5a 85053 Ingolstadt, Germany</span>
-                </div>
-            </div>
-
-            <div class="founder-info">
-                <div class="founder-title">Gründer und Geschäftsführer:</div>
-                <div>Gautam Arolkar, MSc.</div>
-            </div>
+        <div class="footer-contact">
+            <div class="footer-contact-item"><span class="contact-icon">📧</span> air.spirits@gmx.de</div>
+            <div class="footer-contact-item"><span class="contact-icon">📱</span> +49 (0) 176 21466 707</div>
+            <div class="footer-contact-item"><span class="contact-icon">📍</span> Merianstr. 5a 85053 Ingolstadt, Germany</div>
         </div>
+        <div class="footer-founder">
+            <span class="footer-founder-title">Gründer und Geschäftsführer:</span> Gautam Arolkar, MSc.
+        </div>
+    </div>
+</footer>
     </div>
 </body>
 
