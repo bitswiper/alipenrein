@@ -1,4 +1,28 @@
 @media (max-width: 700px) {
+    .footer-content {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .footer-company {
+        flex: 0 0 auto;
+        width: auto;
+        margin-right: 1rem;
+    }
+    .footer-contact {
+        flex: 1 1 0;
+        width: 100%;
+    }
+}
+/* Footer logo styling */
+.footer-logo {
+    height: 80px;
+    margin-bottom: 8px;
+    display: block;
+    margin-left: 0;
+    margin-right: 0;
+}
+@media (max-width: 700px) {
     html, body {
         margin: 0 !important;
         padding: 0 !important;
